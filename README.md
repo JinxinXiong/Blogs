@@ -26,7 +26,7 @@ Objective: maximize the expected total reward
 
 $R_t$: reward for action at time t
 
-the value for action a: $q_*(a) = E[R_t|A_t = a]$
+the value for action a: $q_*(a) = E[R_t\|A_t = a]$
 
 **Estimation value of action a at time t**: $Q_t(a)$
 
@@ -66,6 +66,7 @@ implementations of the the action-value methods: constant memory and constant pe
 $R_i$: the reward received after the ith selection of this action.
 
 $Q_n$: denote the estimate of its action value after it has been selected $n-1$ times.
+
 $$
 Q_n = \frac{R_1+R_2+\cdots+R_{n-1}}{n-1}
 $$
@@ -89,9 +90,11 @@ Inialize, for a=1 to k:
 ### Tracking a Nonstationary Problem
 
 In non-stationary cases, it makes sense to give more weight to recent rewards than to long-past rewards. 
+
 $$
 \begin{align}Q_{n+1} &= Q_n+\alpha(R_n-Q_n)\\&=\alpha R_n + (1-\alpha)Q_n\\&=\alpha R_n + (1-\alpha)[\alpha R_{n-1}+(1-\alpha Q_{n-1})]\\&=(1-\alpha)^n Q_1 + \sum_{i=1}^n\alpha(1-\alpha)^{n-i}R_i\end{align}
 $$
+
 $(1-\alpha)^n+\sum_{i=1}^n\alpha(1-\alpha)^{n-i}=1$, **exponential recency-weighted average**
 
 **Conditions required to assure convergence with prob 1**:
@@ -119,9 +122,11 @@ previous methods depend to some extent on the initial action-value estimates, $Q
 ### Upper-Confidence-Bound Action Selection
 
 $\epsilon$-greedy: indiscriminately select the non-greedy actions, with no preference for those that are nearly greedy or particularly uncertain.
+
 $$
 A_t = argmax_a Q_t(a)+c\sqrt{\frac{In(t)}{N_t(a)}}
 $$
+
 the latter term is a measure of the uncertainty or variance:
 
 1. action a is taken, $N_t(a)$ increase, uncertainty decrease
@@ -132,10 +137,13 @@ Note: not practical for nonstationary and function approximation methods
 ### Gradient Bandit Algorithms
 
 $H_t(a)$: a numerical preference for each action a at time t; the larger the preference, the more often that action is taken. 
+
 $$
 \mathbb{P}(A_t=a) = \frac{e^{H_t(a)}}{\sum_{b=1}^k e^{H_t(b)}} = \pi_t(a)
 $$
+
 $\pi_t(a)$: the probability of taking action a at time t. $H_1(a)=0$
+
 $$
 H_{t+1}(a) = H_t(a)+\alpha\frac{\partial\mathbb{E}[R_t]}{\partial H_t(a)}\\\mathbb{E}[R_t] = \sum_x \pi_t(x)q_*(x)\\
 $$
