@@ -26,7 +26,7 @@ Objective: maximize the expected total reward
 
 $R_t$: reward for action at time t
 
-the value for action a: $q_*(a) = E[R_t\|A_t = a]$
+the value for action a: $q_*(a) = E[R_t\vert A_t = a]$
 
 **Estimation value of action a at time t**: $Q_t(a)$
 
@@ -67,9 +67,9 @@ $R_i$: the reward received after the ith selection of this action.
 
 $Q_n$: denote the estimate of its action value after it has been selected $n-1$ times.
 
-$$
+\[
 Q_n = \frac{R_1+R_2+\cdots+R_{n-1}}{n-1}
-$$
+\]
 
 $$
 Q_{n+1}=Q_n+\frac{1}{n}(R_n-Q_n)
