@@ -67,9 +67,9 @@ $R_i$: the reward received after the ith selection of this action.
 
 $Q_n$: denote the estimate of its action value after it has been selected $n-1$ times.
 
-\[
+$$
 Q_n = \frac{R_1+R_2+\cdots+R_{n-1}}{n-1}
-\]
+$$
 
 $$
 Q_{n+1}=Q_n+\frac{1}{n}(R_n-Q_n)
